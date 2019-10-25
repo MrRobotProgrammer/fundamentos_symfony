@@ -17,13 +17,11 @@
                 requirements:
                   id: '\d+'
         * Atributo opcional e valor padrão
-            * show:
-                path: /task/show/{id?}
-                controller: App\Controller\TaskController::show
-                defaults:
-                  id: 10
-                requirements:
-                  id: '\d+'
+            * eX: defaults: 
+                    id: 10
+        * Definido métodos HTTP aceitos na rota
+            * Requisição dever feita de modo correto e por isso deve ser definido os métodos para cada rota
+                * EX: methods: [GET|POST]
              
  * CRIANDO CONTROLLER PARA ROTA
     * No controller, precisamos  retornar uma instancia da classe RESPONSE que será enviada para o navegador
