@@ -16,6 +16,14 @@
                 controller: App\Controller\TaskController::show
                 requirements:
                   id: '\d+'
+        * Atributo opcional e valor padrão
+            * show:
+                path: /task/show/{id?}
+                controller: App\Controller\TaskController::show
+                defaults:
+                  id: 10
+                requirements:
+                  id: '\d+'
              
  * CRIANDO CONTROLLER PARA ROTA
     * No controller, precisamos  retornar uma instancia da classe RESPONSE que será enviada para o navegador
