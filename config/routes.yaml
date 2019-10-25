@@ -5,3 +5,9 @@
 task:
   path: /task
   controller: App\Controller\TaskController::index
+
+show:
+  path: /task/{id}
+  controller: App\Controller\TaskController::show
+  requirements:
+    id: '\d+'

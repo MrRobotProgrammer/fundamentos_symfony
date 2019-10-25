@@ -12,4 +12,9 @@ class TaskController
     {
         return new Response('Esta é minha primeira pagina');
     }
+
+    public function show($id)
+    {
+        return new Response(('Id de retorno ' . $id));
+    }
 }
