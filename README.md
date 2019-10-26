@@ -22,6 +22,12 @@
         * Definido métodos HTTP aceitos na rota
             * Requisição dever feita de modo correto e por isso deve ser definido os métodos para cada rota
                 * EX: methods: [GET|POST]
+        * Forçar rolta a utilizar protocolo
+            * Protocolo HTTPS é o protocolo HTTP seguro, onde é necessário um certificado que comprova que aquele site de fato é seu.
+                *  ex: scheme: [HTTPS]
+            * Definindo condições para rota ser aceita
+                * Parametro "codition" define as condições para a rota ser exibida
+                    * ex: condition:  "context.getMethod() in ['GET', 'HEAD'] and request.headers.get('User-Agent') matches '/Chrome/i'"
              
  * CRIANDO CONTROLLER PARA ROTA
     * No controller, precisamos  retornar uma instancia da classe RESPONSE que será enviada para o navegador
