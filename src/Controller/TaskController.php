@@ -3,14 +3,28 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class TaskController
+class TaskController extends AbstractController
 {
     public function index()
     {
-        return new Response('Esta é minha primeira pagina');
+        return $this->render('task\index.html.twig',[
+            'curso' => 'Laravel',
+            'cursos' => [
+                0 => [
+                    'name' => 'Laravel'
+                ],
+                1 => [
+                    'name' => 'Symfony'
+                ],
+                2 => [
+                    'name' => 'AWS'
+                ]
+            ]
+        ]);
     }
 
     public function show($id)

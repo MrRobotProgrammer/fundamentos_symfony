@@ -2,8 +2,8 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-lista:
-    path: /lista
+task:
+    path: /task
     controller: App\Controller\TaskController::index
     methods: [GET|POST]
 

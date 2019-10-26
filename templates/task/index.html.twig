@@ -1,0 +1,8 @@
+{% if curso == "Symfony" %}
+    <p>Você esta fazendo o melhor curso de {{ curso }} no Brasil</p>
+{% else %}
+    <p>{{ curso }} não é um curso de symfony</p>
+{% endif %}
+{% for item in cursos %}
+    <li>{{ item.name }}</li>
+{% endfor %}
