@@ -36,8 +36,7 @@
 * VIEWS"
     * Estrutura de decisão e repetição
         * Twig ajuda na criação das estruturas de repetiçao, IF e FOR fica muito mais simples e facíl de se trabalhar
-            * ex: <br>
-                <htm>
+            * ex:dfgsdfg
                 {% if curso == "Symfony" %}<br>
                 Você esta fazendo o melhor curso de {{ curso }} no Brasil<br>
                 {% else %}
@@ -67,6 +66,8 @@
                        {% for item in cursos %}
                            <li>item.name</li>
                        {% endfor %}
-                   {% endblock %}
-                   
+                   {% endblock %}                   
                    {% block footer %}{% endblock %}
+    * Melhorando o estilo do layout
+        * inserimos um template do bootstrap para nossa pagina
+            * Incluimos o conteudo do nosso template em nosso arquivo base.html.twig
