@@ -1,8 +1,14 @@
-{% if curso == "Symfony" %}
-    <p>Você esta fazendo o melhor curso de {{ curso }} no Brasil</p>
-{% else %}
-    <p>{{ curso }} não é um curso de symfony</p>
-{% endif %}
-{% for item in cursos %}
-    <li>{{ item.name }}</li>
-{% endfor %}
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Lista de Cursos
+{% endblock %}
+
+{% block body %}
+    <h1 xmlns="http://www.w3.org/1999/html">Lista de Cursos</h1>
+    <p>Este curso é  <strong>{{ curso }}</strong></p>
+    <h3>Outros cursos</h3>
+    {% for item in cursos %}
+        <li>item.name</li>
+    {% endfor %}
+{% endblock %}

@@ -32,3 +32,41 @@
  * CRIANDO CONTROLLER PARA ROTA
     * No controller, precisamos  retornar uma instancia da classe RESPONSE que será enviada para o navegador
     * Importar a classe referente ao RESPONSE.
+
+* VIEWS"
+    * Estrutura de decisão e repetição
+        * Twig ajuda na criação das estruturas de repetiçao, IF e FOR fica muito mais simples e facíl de se trabalhar
+            * ex: <br>
+                <htm>
+                {% if curso == "Symfony" %}<br>
+                Você esta fazendo o melhor curso de {{ curso }} no Brasil<br>
+                {% else %}
+                    <p>{{ curso }} não é um curso de symfony</p>
+                {% endif %}
+                {% for item in cursos %}<br>
+                   {{ item.name }}<br>
+                {% endfor %}
+                </html>
+                
+    * Estendendo layout
+        * Com twig podemos estender o layout facilitando a organização do nosso HTML
+        * Podemos dividir nosso HTML em:
+            * HEARD | BODY | FOOTER
+                   
+                   {% extends "base.html.twig" %}
+                   
+                   {% block stylesheets %} {% endblock%}
+                   {% block title %}
+                       Lista de Cursos
+                   {% endblock %}
+                                      
+                   {% block body %}
+                       <h1">Lista de Cursos</h1>
+                       <p>Este curso é  <strong>{{ curso }}</strong></p>
+                       <h3>Outros cursos</h3>
+                       {% for item in cursos %}
+                           <li>item.name</li>
+                       {% endfor %}
+                   {% endblock %}
+                   
+                   {% block footer %}{% endblock %}
