@@ -166,4 +166,12 @@
                              {
                                  $this->description = $description;
                              }
-            
+* Criando entidade via comando
+    * Para criarmos uma nova entidade sem precisar faze-lo manualmente, precisamos usar o seguinte comando
+    
+     
+        * php bin/console make:entity
+        
+  *     
+     
+     
