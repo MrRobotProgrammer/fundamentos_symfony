@@ -60,10 +60,6 @@ class TaskController extends AbstractController
         $entityManager->persist($task);
         $entityManager->flush();
 
-        $url = $this->generateUrl('task_show', [
-            'id' => $task->getId()
-        ]);
-
-        return new RedirectResponse($url);
+        return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
     }
 }

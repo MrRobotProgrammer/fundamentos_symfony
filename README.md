@@ -301,3 +301,12 @@
             
             ## Redireciona para URL
             return new RedirectResponse($url);             
+
+* Usando métodos de redirect do AbstractController
+    * Podemos utilizar  um método chamado redirectToRoute para redirecionar nossa aplicação
+    * Com esse método simplifica nosso código e passa não necessitar mais da classe RedirectResponse
+        
+        
+        ## Método do AbstractController
+        return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
+        
