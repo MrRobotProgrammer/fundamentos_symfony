@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -45,7 +46,12 @@ class TaskController extends AbstractController
      */
     public function show($id)
     {
-        return new Response(('Id de retorno ' . $id));
+        $repository = $this->entityManager->getRepository(Task::class);
+        $task = $repository->findOneBy([
+            'id' => $id
+        ]);
+
+        return new JsonResponse($task, Response::HTTP_OK);
     }
 
     public function create()

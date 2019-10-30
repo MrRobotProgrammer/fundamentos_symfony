@@ -187,5 +187,33 @@
             
             Ex: php bin/console doctrine:migrations:migrate 
   * Criando registro no banco de dados
-    * 
-     
+    * 1 - Para incluir registro na base é necessário utilizar os métodos do Doctrine que é atualmente o melhor conjunto de bibliotecas PHP para trabalhar com bancos de dados.
+    * 2 - Essas ferramentas suportam bancos de dados relacionais como MYSQL e PostegreSQL e também banco de dados NoSQL como MongoDB.
+        * Como utilizar
+            
+            
+            ## como utilizar
+                *INCLUIR DOCTRINE 
+                 use Doctrine\ORM\EntityManagerInterface;
+            
+            ## Iniciar a classe Doctrine no construct                
+                private $entityManager;                
+                    public function __construct(EntityManagerInterface $entityManager)
+                {
+                    $this->entityManager = $entityManager;
+                }
+  + Reconhecendo repositorio e retornando dados
+    * Para retornar os dados inseridos em nossa base de dados, vamos precisar do nosso repository, é por meio dele que faremos todas as nossas consultas
+    * Nossa classe repository é criada com o memso comando que cria as nossas entity (entidades), lovalizado na pasta Entity\Repository
+    * Para retornar nossos dados, criaremos metodo show em nosso arquivo controller:
+        
+        
+        * public function show($id)
+              {
+                  $repository = $this->entityManager->getRepository(Task::class);
+                  $task = $repository->findOneBy([
+                      'id' => $id
+                  ]);
+          
+                  return new JsonResponse($task, Response::HTTP_OK);
+              }
