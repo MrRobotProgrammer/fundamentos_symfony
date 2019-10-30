@@ -205,10 +205,9 @@
   + Reconhecendo repositorio e retornando dados
     * Para retornar os dados inseridos em nossa base de dados, vamos precisar do nosso repository, é por meio dele que faremos todas as nossas consultas
     * Nossa classe repository é criada com o memso comando que cria as nossas entity (entidades), lovalizado na pasta Entity\Repository
-    * Para retornar nossos dados, criaremos metodo show em nosso arquivo controller:
-        
-        
-        * public function show($id)
+      * Para retornar nossos dados, criaremos metodo show em nosso arquivo controller:
+                 
+                 public function show($id)
               {
                   $repository = $this->entityManager->getRepository(Task::class);
                   $task = $repository->findOneBy([
@@ -216,9 +215,10 @@
                   ]);          
                   return new JsonResponse($task, Response::HTTP_OK);
               }
+              
 * Busca por multiplas linhas
     * Para visualizar todos os dados retornados pelo nosso controller devemos fazer um FOR em nossa view.
-        * exemplo;
+            * exemplo;
             
             
             {% extends "base.html.twig" %}
@@ -254,7 +254,7 @@
 * Buscando uma tarefa unica na view
     * O método SHOW do nosso controller, recebe via GET o ID da tarefa, aciona o método FindOneBy() para o repository e retorna a tarefa referente ao ID recebido
     * O método render do controllerTrait encaminha os dados retornados para nossa view
-        * exemplo: 
+            * exemplo: 
             
             
             ## metodo FindOneBY
@@ -293,7 +293,7 @@
         $task = $repository->findAll();
 * Redirect de rotas nomeadas
     * Além de retornar valores, nós podemos redirecionar nossa aplicação para uma URL expecifica
-        * O método responsavel pelo rediricionamento é o RedirectResponse
+            * O método responsavel pelo rediricionamento é o RedirectResponse
             
             
             ## inclui a classe RedirectResponse
