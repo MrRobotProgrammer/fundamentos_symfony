@@ -280,4 +280,14 @@
                     </p>            
                 </div>
             {% endblock %}
-            
+* Refatorando o código
+    * Podemos extender a class AbstractController e u7tilizar seus métodos para melhorar nosso código
+        
+        
+        ## Extender class AbstractController 
+        class TaskController extends AbstractController
+        
+        ## Código refatorado
+        $repository = $this->getDoctrine()->getManager()->getRepository(Task::class);
+        $task = $repository->findAll();
+*             

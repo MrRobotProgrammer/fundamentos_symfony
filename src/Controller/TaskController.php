@@ -12,12 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends AbstractController
 {
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-{
-    $this->entityManager = $entityManager;
-}
 
     /**
      * Lista tidas as tarefas
@@ -26,7 +20,7 @@ class TaskController extends AbstractController
      */
     public function index()
     {
-        $repository = $this->entityManager->getRepository(Task::class);
+        $repository = $this->getDoctrine()->getManager()->getRepository(Task::class);
         $task = $repository->findAll();
 
         return $this->render('task\index.html.twig',[
@@ -40,7 +34,7 @@ class TaskController extends AbstractController
      */
     public function show($id)
     {
-        $repository = $this->entityManager->getRepository(Task::class);
+        $repository = $this->getDoctrine()->getRepository(Task::class);
         $task = $repository->findOneBy([
             'id' => $id
         ]);
@@ -57,12 +51,13 @@ class TaskController extends AbstractController
     public function create()
     {
         $task = new Task();
-        $task->setName('Agendamento');
-        $task->setDescription('Agendamento do cliente x por razão X');
+        $task->setName('Distribuicao');
+        $task->setDescription('Distribuicao do cliente x por razão X');
         $task->setScheduling(new \DateTime());
 
-        $this->entityManager->persist($task);
-        $this->entityManager->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($task);
+        $entityManager->flush();
 
         return new Response('dados gravados com sucesso!! , novo regisrto ID ' . $task->getId());
     }
