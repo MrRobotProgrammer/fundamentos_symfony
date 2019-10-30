@@ -251,3 +251,33 @@
                 </table>
             {% endblock %} 
     
+* Buscando uma tarefa unica na view
+    * O método SHOW do nosso controller, recebe via GET o ID da tarefa, aciona o método FindOneBy() para o repository e retorna a tarefa referente ao ID recebido
+    * O método render do controllerTrait encaminha os dados retornados para nossa view
+        * exemplo: 
+            
+            
+            ## metodo FindOneBY
+            $task = $repository->findOneBy([
+                        'id' => $id
+                    ]);
+            
+            ## metodo render
+            return $this->render('task\show.html.twig', [
+                        'task' => $task
+                    ]); 
+            
+            ## view show.html.twig
+            {% block body %}
+                <div class="col-sm-12">
+                    <h1>Detalhes da tarefa - ID {{ task.id }}</h1>
+                </div>            
+                <div class="col-sm-12">            
+                    <p>
+                        <strong>Titulo: </strong> {{ task.name }}<br>
+                        <strong>Descrição: </strong> {{ task.description }}<br>
+                        <strong>Data: </strong>
+                    </p>            
+                </div>
+            {% endblock %}
+            

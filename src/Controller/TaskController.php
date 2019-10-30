@@ -20,6 +20,8 @@ class TaskController extends AbstractController
 }
 
     /**
+     * Lista tidas as tarefas
+     *
      * @return Response
      */
     public function index()
@@ -40,12 +42,18 @@ class TaskController extends AbstractController
     {
         $repository = $this->entityManager->getRepository(Task::class);
         $task = $repository->findOneBy([
-            'name' => $id
+            'id' => $id
         ]);
 
-        return new JsonResponse($task, Response::HTTP_OK);
+        return $this->render('task\show.html.twig', [
+            'task' => $task
+        ]);
     }
 
+    /**
+     * @return Response
+     * @throws \Exception
+     */
     public function create()
     {
         $task = new Task();
