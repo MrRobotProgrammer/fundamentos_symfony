@@ -313,3 +313,22 @@
     
         # Exception do método da classe AbstractController
         throw $this->createNotFoundException('Tarefa não encontrada');
+
+* Usando ParamConverter para busca automática
+    * Quando instalamos o Symfony, por padrão é implementado o pacote FrameworkBumble
+    * Iremos usar o doctrineConverte
+        - Ele ajuda a converter o parametro que recebemos na URL para uma instancia da nossa entidade já populada, buscando no banco de dados e quando ele não encontra ele retorna um erro em notFoud
+         
+    * Todos os recursos fornecidos pelo pacote e são ativados por padrão e registrado em sua classe no kernel
+    * Objetivo principal é diminui o controle do seu controlador (como sua única responsabilidade é obter dados do modelo)
+    * Nossa controller passa fazer a busca dessa forma
+        
+        
+        ## Método show fica bem mais simples
+        public function show(Task $task)
+            {
+                return $this->render('task\show.html.twig', [
+                    'task' => $task
+                ]);
+            }
+ 

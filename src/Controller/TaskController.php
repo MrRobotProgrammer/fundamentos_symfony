@@ -4,10 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -33,17 +30,8 @@ class TaskController extends AbstractController
      * @param $id
      * @return Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
-        $repository = $this->getDoctrine()->getRepository(Task::class);
-        $task = $repository->findOneBy([
-            'id' => $id
-        ]);
-
-        if (!$task) {
-            throw $this->createNotFoundException('Tarefa não encontrada');
-        }
-
         return $this->render('task\show.html.twig', [
             'task' => $task
         ]);
