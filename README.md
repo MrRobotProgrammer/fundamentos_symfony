@@ -213,7 +213,41 @@
                   $repository = $this->entityManager->getRepository(Task::class);
                   $task = $repository->findOneBy([
                       'id' => $id
-                  ]);
-          
+                  ]);          
                   return new JsonResponse($task, Response::HTTP_OK);
               }
+* Busca por multiplas linhas
+    * Para visualizar todos os dados retornados pelo nosso controller devemos fazer um FOR em nossa view.
+        * exemplo;
+            
+            
+            {% extends "base.html.twig" %}
+            
+            {% block title %}
+                Lista de Cursos
+            {% endblock %}
+            
+            {% block body %}
+                <h1>Lista de Cursos</h1>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Data</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in task %}
+                    <tr>
+                        <th scope="row">{{ item.id }}</th>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.description }}</td>
+                        <td></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endblock %} 
+    

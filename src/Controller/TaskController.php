@@ -24,19 +24,11 @@ class TaskController extends AbstractController
      */
     public function index()
     {
+        $repository = $this->entityManager->getRepository(Task::class);
+        $task = $repository->findAll();
+
         return $this->render('task\index.html.twig',[
-            'curso' => 'Laravel',
-            'cursos' => [
-                0 => [
-                    'name' => 'Laravel'
-                ],
-                1 => [
-                    'name' => 'Symfony'
-                ],
-                2 => [
-                    'name' => 'AWS'
-                ]
-            ]
+            'task' => $task
         ]);
     }
 
@@ -48,7 +40,7 @@ class TaskController extends AbstractController
     {
         $repository = $this->entityManager->getRepository(Task::class);
         $task = $repository->findOneBy([
-            'id' => $id
+            'name' => $id
         ]);
 
         return new JsonResponse($task, Response::HTTP_OK);
@@ -57,8 +49,8 @@ class TaskController extends AbstractController
     public function create()
     {
         $task = new Task();
-        $task->setName('Visitar o cliente');
-        $task->setDescription('Visitar o cliente x por razão X');
+        $task->setName('Agendamento');
+        $task->setDescription('Agendamento do cliente x por razão X');
         $task->setScheduling(new \DateTime());
 
         $this->entityManager->persist($task);
