@@ -309,4 +309,7 @@
         
         ## Método do AbstractController
         return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
-        
+* Lançando exceções no controller    
+    
+        # Exception do método da classe AbstractController
+        throw $this->createNotFoundException('Tarefa não encontrada');

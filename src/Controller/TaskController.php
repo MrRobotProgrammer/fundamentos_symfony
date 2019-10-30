@@ -40,6 +40,10 @@ class TaskController extends AbstractController
             'id' => $id
         ]);
 
+        if (!$task) {
+            throw $this->createNotFoundException('Tarefa não encontrada');
+        }
+
         return $this->render('task\show.html.twig', [
             'task' => $task
         ]);
