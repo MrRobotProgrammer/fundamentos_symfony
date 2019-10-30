@@ -26,6 +26,11 @@ class Task
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $scheduling;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Task
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getScheduling(): ?\DateTimeInterface
+    {
+        return $this->scheduling;
+    }
+
+    public function setScheduling(\DateTimeInterface $scheduling): self
+    {
+        $this->scheduling = $scheduling;
 
         return $this;
     }

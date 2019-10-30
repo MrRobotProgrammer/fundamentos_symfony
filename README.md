@@ -170,8 +170,22 @@
     * Para criarmos uma nova entidade sem precisar faze-lo manualmente, precisamos usar o seguinte comando
     
      
-        * php bin/console make:entity
+        Ex: php bin/console make:entity
         
-  *     
-     
+  * Adicionando novas propriedades a entidade
+    * Para adicionar novas propriedades basta utilizar o mesmo código que foi usado para criar a entidade e inserir o mesmo nome da entidade que deseja adicionar as novas propriedades
+  * Migrations
+    * As migrations gera um arquivo de migração com as devidas querys que ira criar a nova tabela com od devidos campos
+    * Também gera um arquivo de versionamento para identificar essa ação, caso necessite de retornar a base de dados para a versão anterior utiliza-se informações dessa tabela
+        
+        
+            ### Criando as migrations 
+            
+            Ex: php bin/console make:migration
+            
+            ### Criando as tabelas e os campos na base de dados 
+            
+            Ex: php bin/console doctrine:migrations:migrate 
+  * Criando registro no banco de dados
+    * 
      
