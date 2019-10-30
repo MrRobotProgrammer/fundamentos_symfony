@@ -280,6 +280,7 @@
                     </p>            
                 </div>
             {% endblock %}
+            
 * Refatorando o código
     * Podemos extender a class AbstractController e u7tilizar seus métodos para melhorar nosso código
         
@@ -290,4 +291,13 @@
         ## Código refatorado
         $repository = $this->getDoctrine()->getManager()->getRepository(Task::class);
         $task = $repository->findAll();
-*             
+* Redirect de rotas nomeadas
+    * Além de retornar valores, nós podemos redirecionar nossa aplicação para uma URL expecifica
+        * O método responsavel pelo rediricionamento é o RedirectResponse
+            
+            
+            ## inclui a classe RedirectResponse
+            use Symfony\Component\HttpFoundation\RedirectResponse;
+            
+            ## Redireciona para URL
+            return new RedirectResponse($url);             

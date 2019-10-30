@@ -2,16 +2,16 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-task:
+task_index:
     path: /task
     controller: App\Controller\TaskController::index
     methods: [GET|POST]
 
-show:
+task_show:
     path: /task/show/{id?}
     controller: App\Controller\TaskController::show
 
-create:
+task_create:
     path: /task/create
     controller: App\Controller\TaskController::create
 

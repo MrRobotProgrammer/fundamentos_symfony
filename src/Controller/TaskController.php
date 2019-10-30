@@ -7,6 +7,7 @@ use App\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -51,14 +52,18 @@ class TaskController extends AbstractController
     public function create()
     {
         $task = new Task();
-        $task->setName('Distribuicao');
-        $task->setDescription('Distribuicao do cliente x por razão X');
+        $task->setName('Controller de Tarefas');
+        $task->setDescription('Organizando tarefas gerais');
         $task->setScheduling(new \DateTime());
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($task);
         $entityManager->flush();
 
-        return new Response('dados gravados com sucesso!! , novo regisrto ID ' . $task->getId());
+        $url = $this->generateUrl('task_show', [
+            'id' => $task->getId()
+        ]);
+
+        return new RedirectResponse($url);
     }
 }
