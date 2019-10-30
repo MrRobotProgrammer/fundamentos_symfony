@@ -331,4 +331,12 @@
                     'task' => $task
                 ]);
             }
- 
+* Gerando controllers via comando
+    * Digite no terminal o seguinte comando
+        
+            ## Esse comando cria um novo arquivo php controller e um arquivo twig na view
+            php bin/console make:controller
+    * Digite esse outro comando
+    
+            ## Com esse comando você cria somente controller
+            php bin/console make:controller --no-template
