@@ -358,4 +358,47 @@
                 $request->query->get('pessoa')['nome']
 
             }            
+* Formulário de criação de tarefas
+    * Criar um formulário 
+    * No controller, verificar se o método enviado pela URL é POST
+        * Caso seja POSTE, criar nova tarefa
+        * Caso não seja POST redirecionar para formulário
             
+                ## Código no Taskcontroller
+                if ($request->isMethod("POST")) {
+                
+                            $task = new Task();
+                            $task->setName('Controller de Tarefas');
+                            $task->setDescription('Organizando tarefas gerais');
+                            $task->setScheduling(new \DateTime());
+                
+                            $entityManager = $this->getDoctrine()->getManager();
+                            $entityManager->persist($task);
+                            $entityManager->flush();
+                
+                            return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
+                        }
+                
+                        return $this->render('task/form.html.twig');
+                    }         
+                 
+                 ## Código na view form.html.twig
+                 <div class="col-sm-12">
+                         <h1>Criar tarefa</h1>
+                     </div>
+                 
+                     <div class="col-sm-12">
+                         <form action="http://127.0.0.1:8000/task/new" method="post">
+                             <div class="form-group">
+                                 <label for="name">Titulo</label>
+                                 <input type="text" class="form-control" name="name" placeholder="titulo">
+                             </div>
+                             <div class="form-group">
+                                 <label for="description">Descrição</label>
+                                 <textarea class="form-control" name="description" placeholder="Descrição"></textarea>
+                             </div>
+                             <button type="submit" class="btn btn-primary">Gravar</button>
+                         </form>
+                     </div>
+    
+                    

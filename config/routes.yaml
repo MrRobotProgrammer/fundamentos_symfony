@@ -11,7 +11,7 @@ task_show:
     path: /task/show/{id?}
     controller: App\Controller\TaskController::show
 
-task_create:
-    path: /task/create
-    controller: App\Controller\TaskController::create
-
+task_new:
+    path: /task/new
+    controller: App\Controller\TaskController::new
+    methods: [GET|POST]
