@@ -41,8 +41,14 @@ class TaskController extends AbstractController
 
     public function new(Request $request)
     {
-        if ($request->isMethod("POST")) {
 
+        if ($request->isMethod("POST")) {
+            var_dump($request->attributes->all());
+            $request->headers->all();
+            $request->server->all();
+            $request->attributes->all();
+            return new Response('');
+            /*
             $task = new Task();
             $task->setName($request->request->get('name'));
             $task->setDescription($request->request->get('description'));
@@ -52,7 +58,7 @@ class TaskController extends AbstractController
             $entityManager->persist($task);
             $entityManager->flush();
 
-            return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
+            return $this->redirectToRoute('task_show', ['id' => $task->getId()]);*/
         }
 
         return $this->render('task/form.html.twig');

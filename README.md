@@ -408,6 +408,17 @@
                         $task = new Task();
                         $task->setName($request->request->get('name'));
                         $task->setDescription($request->request->get('description')); 
+* Obtendo dados da rota
+    * Podemos obter uma série de dados vindo do nosso request, por exemplo:
+            
+                    ## Dados header 
+                    $request->headers->all();
                     
-
+                    ## Dados do servidor
+                    $request->server->all();
+                    
+                    ##  Dados referente a rota e controller 
+                    $request->attributes->all();
+                          
+* 
                     
