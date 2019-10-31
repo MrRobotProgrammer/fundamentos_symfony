@@ -338,3 +338,24 @@
     
             ## Com esse comando você cria somente controller
             php bin/console make:controller --no-template
+* Obtendo dados enviados via GET
+    * Os dados que são enviados pela URL, são acessados via Request
+    * No Symfony precisamos usar a classe Request para acessar esses dados
+            
+            ## incluindo classe request
+            use Symfony\Component\HttpFoundation\Request;
+            
+            ## Acessar informações pelo nosso controller
+            public function index(Request $request){
+                            
+                ## retorna todos os valores enviados para request
+                $request->query->all(),
+                
+                ## Retorna valor de uma chave especificar enviado para request
+                $request->query->get('nome'),
+                
+                ## Retornar um item especifico no formato de Array enviado Request
+                $request->query->get('pessoa')['nome']
+
+            }            
+            
