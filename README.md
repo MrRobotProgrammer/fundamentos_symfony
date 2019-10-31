@@ -400,5 +400,14 @@
                              <button type="submit" class="btn btn-primary">Gravar</button>
                          </form>
                      </div>
-    
+    * Obtendo dados enviados via POST
+        * Salvando os dados enviados pelo nosso formulário
+            * Formulário envia um post para nosso controller e nosso controller recebe esses dados via request->get()
+                        
+                        ##
+                        $task = new Task();
+                        $task->setName($request->request->get('name'));
+                        $task->setDescription($request->request->get('description')); 
+                    
+
                     

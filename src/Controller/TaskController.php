@@ -44,8 +44,8 @@ class TaskController extends AbstractController
         if ($request->isMethod("POST")) {
 
             $task = new Task();
-            $task->setName('Controller de Tarefas');
-            $task->setDescription('Organizando tarefas gerais');
+            $task->setName($request->request->get('name'));
+            $task->setDescription($request->request->get('description'));
             $task->setScheduling(new \DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
