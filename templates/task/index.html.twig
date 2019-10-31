@@ -6,6 +6,10 @@
 
 {% block body %}
     <h1>Lista de Cursos</h1>
+
+    <div class="col-sm-12">
+        <a href="{{ url('task_new') }}" class="btn btn-primary" >Nova tarefa</a>
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -13,6 +17,7 @@
             <th scope="col">Titulo</th>
             <th scope="col">Descrição</th>
             <th scope="col">Data</th>
+            <th scope="col">Ação</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +27,9 @@
             <td>{{ item.name }}</td>
             <td>{{ item.description }}</td>
             <td></td>
+            <td>
+                <a href="{{ url("task_show", {id: item.id} ) }}" >Ver</a>
+            </td>
         </tr>
         {% endfor %}
         </tbody>

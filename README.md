@@ -420,5 +420,31 @@
                     ##  Dados referente a rota e controller 
                     $request->attributes->all();
                           
-* 
+* Gerando caminho no twig
+    * Podemos gerar uma URL dinamicamente em nossas views
+        * Em nossa URL dinamica, podemos inserir os apelidos da nossa rota que irá solicitar
+                        
+              #
+              task_index:
+                  path: /task
+                  controller: App\Controller\TaskController::index
+                  methods: [GET|POST]
+              
+              task_show:
+                  path: /task/show/{id?}
+                  controller: App\Controller\TaskController::show
+              
+              task_new:
+                  path: /task/new
+                  controller: App\Controller\TaskController::new
+                  methods: [GET|POST]
+        
+        * Gerando links com as URLs            
+                  
+                  ## Url comum
+                  <a href="{{ url('task_index') }}" class="btn btn btn-default">Voltar</a>
+                  <a href="{{ url('task_new') }}" class="btn btn-primary" >Nova tarefa</a>
+                  
+                  ## Url com identificador
+                  <a href="{{ url("task_show", {id: item.id} ) }}" >Ver</a>
                     
