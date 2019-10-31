@@ -14,3 +14,11 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+
+    assets:
+        packages:
+            css:
+                base_path: /css
+            js:
+                base_path: /js
