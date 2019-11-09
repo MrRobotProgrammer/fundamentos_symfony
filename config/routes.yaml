@@ -15,5 +15,11 @@ task_new:
     controller: App\Controller\TaskController::new
 
 task_edit:
-    path: /{id}/edit
+    path: /task/{id}/edit
     controller: App\Controller\TaskController::edit
+    methods: [GET, POST]
+
+task_delete:
+    path: /task/{id}
+    controller: App\Controller\TaskController::delete
+    methods: [DELETE]
