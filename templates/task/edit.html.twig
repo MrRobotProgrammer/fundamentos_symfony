@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Lista de tarefas
+{% endblock %}
+
+{% block body %}
+    <div class="col-sm-12">
+        <h1>Editar tarefa - ID {{ task.id }}</h1>
+    </div>
+        {% include "task/_form.html.twig" %}
+    </div>
+{% endblock %}

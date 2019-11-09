@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends AbstractController
 {
-
     /**
      * Lista tidas as tarefas
      *
@@ -38,10 +37,13 @@ class TaskController extends AbstractController
         ]);
     }
 
-
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \Exception
+     */
     public function new(Request $request)
     {
-
         if ($request->isMethod("POST")) {
 
             $task = new Task();
@@ -56,6 +58,20 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
         }
 
-        return $this->render('task/form.html.twig');
+        return $this->render('task/new.html.twig');
+    }
+
+    /**
+     * Editar tarefa
+     *
+     * @param Request $request
+     * @param Task $task
+     * @return Response
+     */
+    public function edit(Request $request, Task $task): Response
+    {
+        return $this->render('task\edit.html.twig', [
+            'task' => $task
+        ]);
     }
 }

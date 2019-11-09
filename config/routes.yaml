@@ -3,9 +3,8 @@
 #    controller: App\Controller\DefaultController::index
 
 task_index:
-    path: /task
+    path: /index
     controller: App\Controller\TaskController::index
-    methods: [GET|POST]
 
 task_show:
     path: /task/show/{id?}
@@ -14,4 +13,7 @@ task_show:
 task_new:
     path: /task/new
     controller: App\Controller\TaskController::new
-    methods: [GET|POST]
+
+task_edit:
+    path: /{id}/edit
+    controller: App\Controller\TaskController::edit
