@@ -3,7 +3,7 @@
 #    controller: App\Controller\DefaultController::index
 
 task_index:
-    path: /index
+    path: /task/index
     controller: App\Controller\TaskController::index
 
 task_show:
@@ -13,6 +13,7 @@ task_show:
 task_new:
     path: /task/new
     controller: App\Controller\TaskController::new
+    methods: [GET, POST]
 
 task_edit:
     path: /task/{id}/edit
@@ -20,6 +21,6 @@ task_edit:
     methods: [GET, POST]
 
 task_delete:
-    path: /task/{id}
+    path: /task/{id}/delete
     controller: App\Controller\TaskController::delete
     methods: [DELETE]

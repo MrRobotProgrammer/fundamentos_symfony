@@ -83,18 +83,13 @@ class TaskController extends AbstractController
         ]);
     }
 
-    /**
-     * Deletar tarefas
-     *
-     * @param Task $task
-     * @return Response
-     */
     public function delete(Task $task): Response
     {
-        $entityManege = $this->getDoctrine()->getManager();
-        $entityManege->remove($task);
-        $entityManege->flush();
+        $entityManeger = $this->getDoctrine()->getManager();
+        $entityManeger->remove($task);
+        $entityManeger->flush();
 
-        return $this->redirectToRoute('task_index');
+        return $this->redirectToRoute('task_index', ['id' => $task->getId()]);
+
     }
 }
