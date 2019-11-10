@@ -7,7 +7,7 @@
 {% block body %}
     <h1>Lista de Cursos</h1>
 
-    <div class="col-sm-12">
+    <div class="col-sm-12 m-tb">
         <a href="{{ url('task_new') }}" class="btn btn-primary" >Nova tarefa</a>
     </div>
     <table class="table">
@@ -28,8 +28,8 @@
             <td>{{ item.description }}</td>
             <td></td>
             <td>
-                <a href="{{ url("task_show", {id: item.id} ) }}" >Ver</a>
-                <a href="{{ url("task_edit", {id: item.id} ) }}" >Atualizar</a>
+                <a href="{{ url("task_show", {id: item.id} ) }}" class="btn btn-primary" >Ver</a>
+                <a href="{{ url("task_edit", {id: item.id} ) }}" class="btn btn-success">Atualizar</a>
             </td>
         </tr>
         {% endfor %}
