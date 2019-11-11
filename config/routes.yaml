@@ -3,7 +3,7 @@
 #    controller: App\Controller\DefaultController::index
 
 task_index:
-    path: /index
+    path: /
     controller: App\Controller\TaskController::index
 
 task_show:
