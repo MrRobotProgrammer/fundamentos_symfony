@@ -28,8 +28,8 @@
             <td>{{ item.description }}</td>
             <td></td>
             <td>
-                <a href="{{ url("task_show", {id: item.id} ) }}" >Ver</a>
-                <a href="{{ url("task_edit", {id: item.id}) }}">Atualizar</a>
+                <a class="btn btn-primary" href="{{ url("task_show", {id: item.id} ) }}" >Ver</a>
+                <a class="btn btn-success" href="{{ url("task_edit", {id: item.id}) }}">Atualizar</a>
             </td>
         </tr>
         {% endfor %}
