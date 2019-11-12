@@ -12,11 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 class TaskController extends AbstractController
 {
     /**
-     * Lista tidas as tarefas
+     * Lista de tarefas do banco de dados
      *
      * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         $repository = $this->getDoctrine()->getManager()->getRepository(Task::class);
         $task = $repository->findAll();
@@ -27,10 +27,12 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @param $id
+     * Mostra uma tarefa especifica do banco de dados
+     *
+     * @param Task $task
      * @return Response
      */
-    public function show(Task $task)
+    public function show(Task $task): Response
     {
         return $this->render('task\show.html.twig', [
             'task' => $task
@@ -38,11 +40,13 @@ class TaskController extends AbstractController
     }
 
     /**
+     * Cria uma nova tarefa no banco de dados
+     *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return Response
      * @throws \Exception
      */
-    public function new(Request $request)
+    public function new(Request $request): Response
     {
         if ($request->isMethod("POST")) {
 
@@ -62,7 +66,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * Editar tarefa
+     * Edita uma tarefa no banco de dados
      *
      * @param Request $request
      * @param Task $task
@@ -84,7 +88,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * Deletar tarefas
+     * Apaga uma tarefa no banco de dados
      *
      * @param Task $task
      * @return Response

@@ -2,13 +2,20 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-task_index:
+task_home:
     path: /
+    controller: App\Controller\HomeController::index
+    methods: [GET, POST]
+
+task:
+    path: /task
     controller: App\Controller\TaskController::index
+    methods: [GET, POST]
 
 task_show:
     path: /task/show/{id?}
     controller: App\Controller\TaskController::show
+    methods: [GET, POST]
 
 task_new:
     path: /task/new
