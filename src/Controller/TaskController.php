@@ -44,7 +44,7 @@ class TaskController extends AbstractController
      */
     public function new(Request $request)
     {
-        if ($request->isMethod("POST")) {
+        if ($request->isMethod("POST") && $this->tokenValidate($request, 'cadastrar_tarefas')) {
 
             $task = new Task();
             $task->setName($request->request->get('name'));
@@ -70,7 +70,7 @@ class TaskController extends AbstractController
      */
     public function edit(Request $request, Task $task): Response
     {
-        if ($request->isMethod("POST")) {
+        if ($request->isMethod("POST") && $this->tokenValidate($request, 'cadastrar_tarefas')) {
             $task->setAll($request->request->all());
             $this->getDoctrine()->getManager()->flush();
 
@@ -82,13 +82,21 @@ class TaskController extends AbstractController
         ]);
     }
 
-    public function delete(Task $task): Response
+    public function delete(Request $request, Task $task): Response
     {
-        $entityManeger = $this->getDoctrine()->getManager();
-        $entityManeger->remove($task);
-        $entityManeger->flush();
+        if ($this->tokenValidate($request, 'deletar_tarefa')) {
+            $entityManeger = $this->getDoctrine()->getManager();
+            $entityManeger->remove($task);
+            $entityManeger->flush();
 
-        return $this->redirectToRoute('task_index', ['id' => $task->getId()]);
+            return $this->redirectToRoute('task');
+        }
 
+        return new Response('Não foi possivel pagar a tarefa ' . $task->getName());
+    }
+
+    private function tokenValidate($request, $name)
+    {
+        return  $this->isCsrfTokenValid($name, $request->request->get('_token'));
     }
 }
