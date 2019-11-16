@@ -12,11 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 class TaskController extends AbstractController
 {
     /**
-     * Lista de tarefas do banco de dados
+     * Lista tidas as tarefas
      *
      * @return Response
      */
-    public function index(): Response
+    public function index()
     {
         $repository = $this->getDoctrine()->getManager()->getRepository(Task::class);
         $task = $repository->findAll();
@@ -27,12 +27,10 @@ class TaskController extends AbstractController
     }
 
     /**
-     * Mostra uma tarefa especifica do banco de dados
-     *
-     * @param Task $task
+     * @param $id
      * @return Response
      */
-    public function show(Task $task): Response
+    public function show(Task $task)
     {
         return $this->render('task\show.html.twig', [
             'task' => $task
@@ -40,16 +38,15 @@ class TaskController extends AbstractController
     }
 
     /**
-     * Cria uma nova tarefa no banco de dados
-     *
      * @param Request $request
      * @return Response
      * @throws \Exception
      */
     public function new(Request $request): Response
     {
-        if ($request->isMethod("POST")) {
+        $isTokenValid = $this->isCsrfTokenValid('cadastro_tarefas', $request->request->get('_token'));
 
+        if ($request->isMethod("POST") && $isTokenValid) {
             $task = new Task();
             $task->setName($request->request->get('name'));
             $task->setDescription($request->request->get('description'));
@@ -66,7 +63,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * Edita uma tarefa no banco de dados
+     * Editar tarefa
      *
      * @param Request $request
      * @param Task $task
@@ -74,30 +71,34 @@ class TaskController extends AbstractController
      */
     public function edit(Request $request, Task $task): Response
     {
-        if ($request->isMethod("POST")) {
-            $task->setAll($request->request->all());
+        $isTokenValid = $this->isCsrfTokenValid('cadastro_tarefas', $request->request->get('_token'));
 
+        if ($request->isMethod("POST") && $isTokenValid) {
+            $task->setName($request->request->get('name'));
+            $task->setDescription($request->request->get('description'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
         }
+        $em = $this->getDoctrine()->getManager();
         return $this->render('task\edit.html.twig', [
             'task' => $task
         ]);
     }
 
-    /**
-     * Apaga uma tarefa no banco de dados
-     *
-     * @param Task $task
-     * @return Response
-     */
-    public function delete(Task $task): Response
+    public function delete(Request $request, Task $task): Response
     {
-        $entityManege = $this->getDoctrine()->getManager();
-        $entityManege->remove($task);
-        $entityManege->flush();
+        $isTokenValid = $this->isCsrfTokenValid('deletar_cadastro', $request->request->get('_token'));
 
-        return $this->redirectToRoute('task_index');
+        if ($isTokenValid) {
+            $entityManeger = $this->getDoctrine()->getManager();
+            $entityManeger->remove($task);
+            $entityManeger->flush();
+
+            return $this->redirectToRoute('task');
+        }
+
+        return new Response('Não foi possível deletar seu cadastro');
+
     }
 }
