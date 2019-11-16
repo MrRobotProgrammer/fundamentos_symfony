@@ -2,9 +2,13 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-task_index:
-    path: /
+task:
+    path: /task
     controller: App\Controller\TaskController::index
+
+home:
+    path: /
+    controller: App\Controller\HomeController::index
 
 task_show:
     path: /task/show/{id?}
