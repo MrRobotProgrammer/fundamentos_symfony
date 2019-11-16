@@ -68,19 +68,17 @@ class TaskController extends AbstractController
      * @param Task $task
      * @return Response
      */
-    public function edit(Request $request, $id): Response
+    public function edit(Request $request, Task $task): Response
     {
         if ($request->isMethod("POST")) {
-            $sql = "UPDATE task SET name = '" . $request->request->get('name') . "'  where id = " . $id;
-            $conn = $this->getDoctrine()->getConnection();
-            $query = $conn->prepare($sql);
-            $query->execute();
+            $task->setAll($request->request->all());
+            $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('task_show', ['id' => $id]);
+            return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
         }
         $em = $this->getDoctrine()->getManager();
         return $this->render('task\edit.html.twig', [
-            'task' => $em->getRepository(Task::class)->find($id)
+            'task' => $task
         ]);
     }
 

@@ -32,6 +32,18 @@ class Task implements JsonSerializable
      */
     private $scheduling;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $proibido;
+
+    public function setAll(array  $data)
+    {
+        foreach ($data as $key => $value) {
+            $this->$key = $value;
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
