@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,17 +43,17 @@ class TaskController extends AbstractController
      */
     public function new(Request $request)
     {
-        $form = $this->createFormBuilder()
+        $task = new Task();
+        $form = $this->createFormBuilder($task)
                 ->add('name', TextType::class)
                 ->add('description', TextareaType::class)
-                ->getForm()
-                ->createView();
+                ->add('Salvar', SubmitType::class)
+                ->getForm();
 
-        if ($request->isMethod("POST") && $this->tokenValidate($request, 'cadastrar_tarefas')) {
+        $form->handleRequest($request);
 
-            $task = new Task();
-            $task->setName($request->request->get('name'));
-            $task->setDescription($request->request->get('description'));
+        if ($form->isSubmitted()) {
+            $task = $form->getData();
             $task->setScheduling(new \DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -63,7 +64,7 @@ class TaskController extends AbstractController
         }
 
         return $this->render('task/new.html.twig', [
-            "form" => $form
+            "form" => $form->createView()
         ]);
     }
 
