@@ -44,9 +44,7 @@ class TaskController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $isTokenValid = $this->isCsrfTokenValid('cadastro_tarefas', $request->request->get('_token'));
-
-        if ($request->isMethod("POST") && $isTokenValid) {
+        if ($request->isMethod("POST") && $this->validToken($_SERVER['CREATE_TASK'], $request)) {
             $task = new Task();
             $task->setName($request->request->get('name'));
             $task->setDescription($request->request->get('description'));
@@ -71,9 +69,7 @@ class TaskController extends AbstractController
      */
     public function edit(Request $request, Task $task): Response
     {
-        $isTokenValid = $this->isCsrfTokenValid('cadastro_tarefas', $request->request->get('_token'));
-
-        if ($request->isMethod("POST") && $isTokenValid) {
+        if ($request->isMethod("POST") && $this->validToken($_SERVER['CREATE_TASK'], $request)) {
             $task->setName($request->request->get('name'));
             $task->setDescription($request->request->get('description'));
             $this->getDoctrine()->getManager()->flush();
@@ -88,9 +84,7 @@ class TaskController extends AbstractController
 
     public function delete(Request $request, Task $task): Response
     {
-        $isTokenValid = $this->isCsrfTokenValid('deletar_cadastro', $request->request->get('_token'));
-
-        if ($isTokenValid) {
+        if ($this->validToken($_SERVER['DELETE_TASK'], $request)) {
             $entityManeger = $this->getDoctrine()->getManager();
             $entityManeger->remove($task);
             $entityManeger->flush();
@@ -99,6 +93,10 @@ class TaskController extends AbstractController
         }
 
         return new Response('Não foi possível deletar seu cadastro');
+    }
 
+    public function validToken($name, $request)
+    {
+        return $this->isCsrfTokenValid($name, $request->request->get('_token'));
     }
 }
