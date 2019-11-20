@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route as ORM;
@@ -40,6 +42,12 @@ class TaskController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $form = $this->createFormBuilder()
+                ->add('name', TextType::class)
+                ->add('description', TextareaType::class)
+                ->getForm()
+                ->createView();
+
         if ($request->isMethod("POST") && $this->validToken($_SERVER['CREATE_TASK'], $request)) {
             $task = new Task();
             $task->setName($request->request->get('name'));
@@ -53,7 +61,9 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
         }
 
-        return $this->render('task/new.html.twig');
+        return $this->render('task/new.html.twig', [
+            "form" => $form
+        ]);
     }
 
     /**
