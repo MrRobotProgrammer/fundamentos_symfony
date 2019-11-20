@@ -2,29 +2,29 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-task:
-    path: /task
-    controller: App\Controller\TaskController::index
-
-home:
-    path: /
-    controller: App\Controller\HomeController::index
-
-task_show:
-    path: /task/show/{id?}
-    controller: App\Controller\TaskController::show
-
-task_new:
-    path: /task/new
-    controller: App\Controller\TaskController::new
-    methods: [GET, POST]
-
-task_edit:
-    path: /task/{id}/edit
-    controller: App\Controller\TaskController::edit
-    methods: [GET, POST]
-
-task_delete:
-    path: /task/{id}/delete
-    controller: App\Controller\TaskController::delete
-    methods: [DELETE]
+#task:
+#    path: /task
+#    controller: App\Controller\TaskController::index
+#
+#home:
+#    path: /
+#    controller: App\Controller\HomeController::index
+#
+#task_show:
+#    path: /task/show/{id?}
+#    controller: App\Controller\TaskController::show
+#
+#task_new:
+#    path: /task/new
+#    controller: App\Controller\TaskController::new
+#    methods: [GET, POST]
+#
+#task_edit:
+#    path: /task/{id}/edit
+#    controller: App\Controller\TaskController::edit
+#    methods: [GET, POST]
+#
+#task_delete:
+#    path: /task/{id}/delete
+#    controller: App\Controller\TaskController::delete
+#    methods: [DELETE]

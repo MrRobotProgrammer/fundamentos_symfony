@@ -7,13 +7,18 @@ use App\Entity\Task;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route as ORM;
 
-
+/**
+ * Class TaskController
+ * @ORM("/task")
+ * @package App\Controller
+ */
 class TaskController extends AbstractController
 {
     /**
-     * Lista tidas as tarefas
-     *
+     * Lista todas as tarefas
+     * @ORM("/", name="task_index", methods={"GET"})
      * @return Response
      */
     public function index()
@@ -27,17 +32,8 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @param $id
-     * @return Response
-     */
-    public function show(Task $task)
-    {
-        return $this->render('task\show.html.twig', [
-            'task' => $task
-        ]);
-    }
-
-    /**
+     * Criar nova tarefa
+     * @ORM("/new", name="task_new", methods={"GET", "POST"})
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @throws \Exception
@@ -62,8 +58,21 @@ class TaskController extends AbstractController
     }
 
     /**
-     * Editar tarefa
-     *
+     * Visualiza a tarefa de acordo com ID
+     * @ORM("/{id}", name="task_show", methods={"GET"})
+     * @param $id
+     * @return Response
+     */
+    public function show(Task $task)
+    {
+        return $this->render('task\show.html.twig', [
+            'task' => $task
+        ]);
+    }
+
+    /**
+     * Altera a  tarefa de acordo ID
+     * @ORM("/{id}/edit", name="task_edit", methods={"GET", "POST"})
      * @param Request $request
      * @param Task $task
      * @return Response
@@ -82,6 +91,13 @@ class TaskController extends AbstractController
         ]);
     }
 
+    /**
+     * Deletar tarefas de acordo ID
+     * @ORM("/{id}/delete", name="task_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Task $task
+     * @return Response
+     */
     public function delete(Request $request, Task $task): Response
     {
         if ($this->tokenValidate($request, 'deletar_tarefa')) {
@@ -89,7 +105,7 @@ class TaskController extends AbstractController
             $entityManeger->remove($task);
             $entityManeger->flush();
 
-            return $this->redirectToRoute('task');
+            return $this->redirectToRoute('task_index');
         }
 
         return new Response('Não foi possivel pagar a tarefa ' . $task->getName());
