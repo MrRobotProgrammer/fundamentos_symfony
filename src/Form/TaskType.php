@@ -14,9 +14,20 @@ namespace App\Form;
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('Salvar', SubmitType::class);
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo', 'required' => false],
+                'required' => true,
+                'label' => 'Titulo'
+            ])
+            ->add('description', TextareaType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Descricao'],
+                'required' => true,
+                'label' => 'Descricao'
+
+            ])
+            ->add('Salvar', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-success']
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
