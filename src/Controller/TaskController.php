@@ -40,12 +40,10 @@ class TaskController extends AbstractController
     public function new(Request $request): Response
     {
         $form = $this->createForm(TaskType::class);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             $task = $form->getData();
-            $task->setScheduling(new \DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
