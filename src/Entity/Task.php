@@ -98,7 +98,7 @@ class Task implements JsonSerializable
             'id' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
-            'sheduling' => $this->getScheduling()
+            'scheduling' => $this->getScheduling()
         ];
     }
 }
