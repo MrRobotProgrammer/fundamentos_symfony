@@ -3,6 +3,7 @@ namespace App\Form;
 
 use App\Entity\Task;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,6 +19,12 @@ class TaskType extends AbstractType
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo'],
                 'label' => 'Titulo',
                 'required' => true
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Email'],
+                'label' => 'Email',
+                'required' => true,
+                'mapped' => false
             ])
             ->add('description', TextareaType::class, [
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Descrição'],
