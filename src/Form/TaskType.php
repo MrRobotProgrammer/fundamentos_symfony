@@ -3,6 +3,7 @@ namespace App\Form;
 
   use App\Entity\Task;
   use Symfony\Component\Form\AbstractType;
+  use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
   use Symfony\Component\Form\Extension\Core\Type\EmailType;
   use Symfony\Component\Form\Extension\Core\Type\SubmitType;
   use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -25,7 +26,17 @@ namespace App\Form;
                 'label' => 'Email',
                 'mapped' => false,
                 'required' => true
-
+            ])
+            ->add('idade', ChoiceType::class, [
+                'attr' => ['class' => 'form-control'],
+                'placeholder' => 'Selecione',
+                'choices' => [
+                    'Quero participar' => 1,
+                    'Não quero participar' => 2
+                ],
+                'label' => 'Evento ',
+                'mapped' => false,
+                'required' => true
             ])
             ->add('description', TextareaType::class, [
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Descricao'],
