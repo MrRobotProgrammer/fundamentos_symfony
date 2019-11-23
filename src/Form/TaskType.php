@@ -14,9 +14,19 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('Salvar', SubmitType::class);
+            ->add('name', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo'],
+                'label' => 'Titulo',
+                'required' => true
+            ])
+            ->add('description', TextareaType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Descrição'],
+                'label' => 'Descrição',
+                'required' => true
+            ])
+            ->add('Salvar', SubmitType::class, [
+                'attr' => ['class' => 'btn btn-success']
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
