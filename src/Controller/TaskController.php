@@ -1,13 +1,9 @@
 <?php
-
-
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Form\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route as ORM;
@@ -21,7 +17,7 @@ class TaskController extends AbstractController
 {
     /**
      * Lista todas as tarefas
-     * @ORM("/", name="task", methods={"GET"})
+     * @ORM("/index", name="task", methods={"GET", "POST"})
      * @return Response
      */
     public function index()
@@ -44,11 +40,7 @@ class TaskController extends AbstractController
     public function new(Request $request): Response
     {
         $task = new Task();
-        $form = $this->createFormBuilder($task)
-                ->add('name', TextType::class)
-                ->add('description', TextareaType::class)
-                ->add('Salvar', SubmitType::class)
-                ->getForm();
+        $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
 
