@@ -1,3 +1,20 @@
 <div class="col-sm-12">
-    {{ form(form)  }}
+    {{ form_start(form)  }}
+        <div class="form-control">
+            <i class="fa fa-calendar"></i> {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            <small>{{ form_help(form.name) }}</small>
+
+            <div class="form-error">
+                {{ form_errors(form.name) }}
+            </div>
+        </div>
+        {{ form_row(form.description) }}
+        {{ form_row(form.scheduling) }}
+        {{ form_row(form.create, {'label': 'Salvar'}) }}
+
+    {{ form_end(form, {'render_rest': false}) }}
+
+
+
 </div>

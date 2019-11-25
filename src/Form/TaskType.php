@@ -18,18 +18,17 @@ namespace App\Form;
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo', 'required' => false],
-                'required' => true,
+                'attr' => [ 'placeholder' => 'Titulo', 'required' => false],
                 'label' => 'Titulo'
             ])
             ->add('email', EmailType::class, [
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Email'],
                 'label' => 'Email',
-                'mapped' => false,
-                'required' => true
+                'mapped' => false
             ])
             ->add('escolha', ChoiceType::class, [
                 'attr' => ['class' => 'form-control'],
+                'required' => true,
                 'placeholder' => 'Selecione',
                 'choices' => [
                     'Quero participar' => 1,
@@ -39,21 +38,19 @@ namespace App\Form;
                 ],
                 'label' => 'Evento ',
                 'multiple' => true,
-                'mapped' => false,
-                'required' => true
+                'mapped' => false
             ])
             ->add('scheduling', DateTimeType::class, [
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Agendamento',
-                'widget' => 'single_text'
+                'widget' => 'single_text',
             ])
             ->add('description', TextareaType::class, [
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Descricao'],
-                'required' => true,
                 'label' => 'Descricao'
 
             ])
-            ->add('Salvar', SubmitType::class, [
+            ->add('create', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success']
             ]);
     }
@@ -61,7 +58,9 @@ namespace App\Form;
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Task::class
+            'data_class' => Task::class,
+            'required' => true,
+            'mapped' => true
         ]);
     }
   }
