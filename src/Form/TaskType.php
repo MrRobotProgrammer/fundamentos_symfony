@@ -18,7 +18,7 @@ namespace App\Form;
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => [ 'placeholder' => 'Titulo', 'required' => false],
+                'attr' => ['placeholder' => 'Titulo', 'required' => false],
                 'label' => 'Titulo'
             ])
             ->add('email', EmailType::class, [
