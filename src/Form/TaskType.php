@@ -23,7 +23,7 @@ class TaskType extends AbstractType
                 'required' => true
             ])
             ->add('email', EmailType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Email'],
+                'attr' => ['placeholder' => 'Email'],
                 'label' => 'Email',
                 'required' => true,
                 'mapped' => false
@@ -35,7 +35,7 @@ class TaskType extends AbstractType
                     'Tenho o interesse' => 3,
                     'Estou em duvida' => 4
                 ],
-                'attr' => ['class' => 'form-control'],
+                'attr' => [],
                 'multiple' => true,
                 'mapped' => false,
                 'label' => 'Evento'
@@ -43,10 +43,10 @@ class TaskType extends AbstractType
             ->add('scheduling', DateTimeType::class, [
                 'widget' => 'single_text',
                 'label' => 'Data ',
-                'attr' => ['class' => 'form-control']
+                'attr' => []
             ])
             ->add('description', TextareaType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Descrição'],
+                'attr' => ['placeholder' => 'Descrição'],
                 'label' => 'Descrição',
                 'required' => true
             ])
