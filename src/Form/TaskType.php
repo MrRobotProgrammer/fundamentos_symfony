@@ -18,7 +18,7 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Titulo'],
+                'attr' => ['placeholder' => 'Titulo'],
                 'label' => 'Titulo',
                 'required' => true
             ])
@@ -50,7 +50,7 @@ class TaskType extends AbstractType
                 'label' => 'Descrição',
                 'required' => true
             ])
-            ->add('Salvar', SubmitType::class, [
+            ->add('create', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-success']
             ]);
     }
