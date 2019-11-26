@@ -22,12 +22,12 @@ namespace App\Form;
                 'label' => 'Titulo'
             ])
             ->add('email', EmailType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Email'],
+                'attr' => ['placeholder' => 'Email'],
                 'label' => 'Email',
                 'mapped' => false
             ])
             ->add('escolha', ChoiceType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => [],
                 'required' => true,
                 'placeholder' => 'Selecione',
                 'choices' => [
@@ -41,12 +41,12 @@ namespace App\Form;
                 'mapped' => false
             ])
             ->add('scheduling', DateTimeType::class, [
-                'attr' => ['class' => 'form-control'],
+                'attr' => [],
                 'label' => 'Agendamento',
                 'widget' => 'single_text',
             ])
             ->add('description', TextareaType::class, [
-                'attr' => ['class' => 'form-control', 'placeholder' => 'Descricao'],
+                'attr' => ['placeholder' => 'Descricao'],
                 'label' => 'Descricao'
 
             ])
