@@ -26,20 +26,7 @@ namespace App\Form;
                 'label' => 'Email',
                 'mapped' => false
             ])
-            ->add('escolha', ChoiceType::class, [
-                'attr' => [],
-                'required' => true,
-                'placeholder' => 'Selecione',
-                'choices' => [
-                    'Quero participar' => 1,
-                    'Não quero participar' => 2,
-                    'Estou em duvida' => 3,
-                    'Tenho interesse' => 4,
-                ],
-                'label' => 'Evento ',
-                'multiple' => true,
-                'mapped' => false
-            ])
+            ->add('escolha', PriorityType::class)
             ->add('scheduling', DateTimeType::class, [
                 'attr' => [],
                 'label' => 'Agendamento',
