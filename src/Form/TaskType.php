@@ -28,18 +28,7 @@ class TaskType extends AbstractType
                 'required' => true,
                 'mapped' => false
             ])
-            ->add('select', ChoiceType::class, [
-                'choices' => [
-                    'Quero ir' => 1,
-                    'Não quero ir' => 2,
-                    'Tenho o interesse' => 3,
-                    'Estou em duvida' => 4
-                ],
-                'attr' => [],
-                'multiple' => true,
-                'mapped' => false,
-                'label' => 'Evento'
-            ])
+            ->add('priority', PriorityType::class)
             ->add('scheduling', DateTimeType::class, [
                 'widget' => 'single_text',
                 'label' => 'Data ',
