@@ -29,11 +29,7 @@ class TaskType extends AbstractType
                 'mapped' => false
             ])
             ->add('priority', PriorityType::class)
-            ->add('scheduling', DateTimeType::class, [
-                'widget' => 'single_text',
-                'label' => 'Data ',
-                'attr' => []
-            ])
+            ->add('scheduling', SchedulingType::class)
             ->add('description', TextareaType::class, [
                 'attr' => ['placeholder' => 'Descrição'],
                 'label' => 'Descrição',
